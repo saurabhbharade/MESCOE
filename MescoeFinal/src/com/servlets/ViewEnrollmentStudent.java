@@ -38,10 +38,10 @@ public class ViewEnrollmentStudent extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		try
+		{
 		HttpSession session = request.getSession(true);
-//		String studentId = request.getParameter("sid");
-//		
-//		int sid = Integer.parseInt(studentId);
+
 		Object studentObject=session.getAttribute("student");
 		Student student=(Student)studentObject;
 		
@@ -51,6 +51,11 @@ public class ViewEnrollmentStudent extends HttpServlet {
 		session.setAttribute("companiesEnrolledbystudent", companiesEnrolledbystudent);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewEnrollmentList.jsp");
 		requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**

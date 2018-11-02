@@ -20,14 +20,14 @@ import com.service.EnrollmentServiceImpl;
 @WebServlet("/CompanyEnrollmentbyStudent")
 public class CompanyEnrollmentbyStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CompanyEnrollmentbyStudent() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CompanyEnrollmentbyStudent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,25 +35,37 @@ public class CompanyEnrollmentbyStudent extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		HttpSession session = request.getSession(true);
-		Object studentobj=session.getAttribute("student");
-		Student student=(Student)studentobj;
-		System.out.println(student.getBranch());
-		
-		
-		String temp_eid = request.getParameter("eid");
-		int eid = Integer.parseInt(temp_eid);
-		
-		String companyid = request.getParameter("cid");
-		int cid = Integer.parseInt(companyid);
-		System.out.println(cid);
-//		Enrollment new_enrollment = new Enrollment(new StudentDaoImpl().getStudent(sid),new CompanyDaoImpl().getCompany(cid));
-		boolean addEnrollmentService = new EnrollmentServiceImpl().addEnrollmentService(student,new CompanyDaoImpl().getCompany(cid));
-	//	session.setAttribute("student", new_enrollment);
-		System.out.println(addEnrollmentService);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentHomePage.jsp");
-		requestDispatcher.forward(request, response);
+		try
+		{
+			HttpSession session = request.getSession(true);
+			Object studentobj=session.getAttribute("student");
+			Student student=(Student)studentobj;
+			System.out.println(student.getBranch());
+
+
+			String temp_eid = request.getParameter("eid");
+			int eid = Integer.parseInt(temp_eid);
+
+			String companyid = request.getParameter("cid");
+			int cid = Integer.parseInt(companyid);
+			System.out.println(cid);
+			
+			boolean addEnrollmentService = new EnrollmentServiceImpl().addEnrollmentService(student,new CompanyDaoImpl().getCompany(cid));
+			
+			System.out.println(addEnrollmentService);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentHomePage.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NumberFormatException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApplyEnrollment.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ApplyEnrollment.jsp");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	/**

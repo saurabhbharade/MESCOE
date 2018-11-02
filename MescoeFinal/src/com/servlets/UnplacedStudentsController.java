@@ -21,14 +21,14 @@ import com.service.StudentServiceImpl;
 @WebServlet("/UnplacedStudentsController")
 public class UnplacedStudentsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UnplacedStudentsController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UnplacedStudentsController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,16 +36,23 @@ public class UnplacedStudentsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		HttpSession session=request.getSession(true);
-		
-		StudentService studentService = new StudentServiceImpl();
-		
-		List<Student> unplacedStudentList = studentService.getUnplacedStudent();
-		
-		session.setAttribute("ListofStudents", unplacedStudentList);
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("StudentList1.jsp");
-		 requestDispatcher.forward(request, response);
+
+		try
+		{
+			HttpSession session=request.getSession(true);
+
+			StudentService studentService = new StudentServiceImpl();
+
+			List<Student> unplacedStudentList = studentService.getUnplacedStudent();
+
+			session.setAttribute("ListofStudents", unplacedStudentList);
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("StudentList1.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**

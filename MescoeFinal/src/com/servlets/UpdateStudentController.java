@@ -35,6 +35,8 @@ public class UpdateStudentController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		try
+		{
 		HttpSession session = request.getSession(true);
 		Object studentObject=session.getAttribute("student");
 		Student old_student=(Student)studentObject;
@@ -60,11 +62,22 @@ public class UpdateStudentController extends HttpServlet {
 		System.out.println("Servlet Updated");
 		
 		Student new_student = new Student(old_student.getSid(), backlog, status, password, sname, branch, instituteName, email, phone, yop, ssc, hsc, beaggregate);
-		//Student new_student = new Student(old_student.getSid(), password, sname, branch, ssc, hsc, aggregate, yop, backlog, status, instituteName, phone, email);
+		
 		new StudentDaoImpl().updateStudent(new_student);
 		session.setAttribute("student", new_student);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentHomePage.jsp");
 		requestDispatcher.forward(request, response);
+		}
+		catch(NumberFormatException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("UpdateStudent.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("UpdateStudent.jsp");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	/**

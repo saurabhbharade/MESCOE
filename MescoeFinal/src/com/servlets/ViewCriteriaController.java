@@ -21,14 +21,14 @@ import com.service.CompanyCriteriaServiceImpl;
 @WebServlet("/ViewCriteriaController")
 public class ViewCriteriaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ViewCriteriaController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ViewCriteriaController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,25 +36,38 @@ public class ViewCriteriaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+
 		HttpSession session = request.getSession(true);
-		
-		String companyid=request.getParameter("cid");
-		int temp_cid=0;
+
 		try
 		{
-		temp_cid=Integer.parseInt(companyid);
+			String companyid=request.getParameter("cid");
+			int temp_cid=0;
+			try
+			{
+				temp_cid=Integer.parseInt(companyid);
+			}
+			catch(NumberFormatException e)
+			{
+				System.out.println(e);
+			}
+
+			CompanyCriteriaService companyOb = new CompanyCriteriaServiceImpl();
+			List<CompanyCriteria> companyCriteriaServiceList = companyOb.getCompanyCriteriaService(temp_cid);
+			session.setAttribute("CompanyCriteriaList", companyCriteriaServiceList);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewCompanyCriteriaDisplay.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("TPOHomePage.jsp");
+			requestDispatcher.forward(request, response);
 		}
 		catch(NumberFormatException e)
 		{
-			System.out.println(e);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("TPOHomePage.jsp");
+			requestDispatcher.forward(request, response);
 		}
-		
-		CompanyCriteriaService companyOb = new CompanyCriteriaServiceImpl();
-		List<CompanyCriteria> companyCriteriaServiceList = companyOb.getCompanyCriteriaService(temp_cid);
-		session.setAttribute("CompanyCriteriaList", companyCriteriaServiceList);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ViewCompanyCriteriaDisplay.jsp");
-		requestDispatcher.forward(request, response);
 	}
 
 	/**

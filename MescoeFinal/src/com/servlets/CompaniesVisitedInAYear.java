@@ -37,6 +37,8 @@ public class CompaniesVisitedInAYear extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		try
+		{
 		HttpSession session = request.getSession(true);
 		String year_in_string = request.getParameter("year");
 		int year_in_int = Integer.parseInt(year_in_string);
@@ -48,6 +50,17 @@ public class CompaniesVisitedInAYear extends HttpServlet {
 		
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("ViewCompanyCriteriaDisplay.jsp");
 		 requestDispatcher.forward(request, response);
+		}
+		catch(NumberFormatException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("TPOHomePage.jsp");
+			requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("TPOHomePage.jsp");
+			requestDispatcher.forward(request, response);
+		}
 		
 	}
 

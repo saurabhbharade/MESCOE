@@ -39,6 +39,8 @@ public class StudentsEligibleForDreamStatus extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try
+		{
 		HttpSession session=request.getSession(true);
 
 		TpoAssistantService tpoAssistantOb = new TpoAssistantServiceImpl();
@@ -48,6 +50,11 @@ public class StudentsEligibleForDreamStatus extends HttpServlet {
 		session.setAttribute("ListofStudents", studentEligibleForDreamStatus);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentList1.jsp");
 		requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
