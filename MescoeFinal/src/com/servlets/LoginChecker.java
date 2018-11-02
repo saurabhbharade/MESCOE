@@ -34,10 +34,12 @@ public class LoginChecker extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try
+		{
 		String sid_in_string = request.getParameter("sid");
 		String pwd = request.getParameter("password");
 		
-		try{
+		
 		
 			if(sid_in_string.equals(new String("admin"))&&pwd.equals("admin"))
 			{
@@ -84,9 +86,15 @@ public class LoginChecker extends HttpServlet {
 			}
 //			
 		}
+		catch(NumberFormatException e)
+		{
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
+			requestDispatcher.forward(request, response);
+		}
 		catch(NullPointerException e)
 		{
-			System.out.println(e);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomePage.jsp");
+			requestDispatcher.forward(request, response);
 		}
 	}
 
