@@ -10,6 +10,10 @@ import com.model.Student;
 
 public class TpoAssistantServiceImpl implements TpoAssistantService{
 
+	/**
+	 * Function definition for the function checkEligibilityOfStudentForCompany
+	 * which determines whether a student is eligible to enroll for a company
+	 */
 	@Override
 	public boolean checkEligibilityOfStudentForCompany(int sid,int cid) {
 		Student student=new StudentServiceImpl().getStudentService(sid);
@@ -67,6 +71,10 @@ public class TpoAssistantServiceImpl implements TpoAssistantService{
 		return true;
 	}
 
+	/**
+	 * Function definition for checkEligibilityOfStudentForDreamStatus
+	 * which checks the eligibility of a student for company with dream status
+	 */
 	@Override
 	public boolean checkEligibilityOfStudentForDreamStatus(int sid) {
 		Student student=new StudentServiceImpl().getStudentService(sid);
@@ -85,6 +93,10 @@ public class TpoAssistantServiceImpl implements TpoAssistantService{
 		return true;
 	}
 
+	/**
+	 * Function definition for getStudentEligibleForDreamStatus that
+	 * returns a list of eligible students
+	 */
 	@Override
 	public List<Student> getStudentEligibleForDreamStatus() {
 		List<Student>studentEligibleForDreamStatusList=new ArrayList<Student>();
@@ -101,16 +113,12 @@ public class TpoAssistantServiceImpl implements TpoAssistantService{
 		return studentEligibleForDreamStatusList;
 	}
 
-//	@Override
-//	public List<Student> getStudentEligibiliyForCompany(List<CompanyCriteria> companyCriteria) {
-//		List<Student> allStudentList = new StudentServiceImpl().getAllStudentService();
-//		for(int i=0;i<allStudentList.size();i++)
-//		{
-//			if(checkEligibilityOfStudentForCompany(allStudentList.get(i).getSid(), ))
-//		}
-//		return null;
-//	}
 
+	/**
+	 * Function declaration for checkStudentEligibiliyForCompanyWithCriteria
+	 * which checks whether a student is eligible for a company based on the 
+	 * criteria sent as a parameter
+	 */
 	@Override
 	public boolean checkStudentEligibiliyForCompanyWithCriteria(int sid,List<CompanyCriteria> companyCriteriaList)
 	{
@@ -170,7 +178,12 @@ public class TpoAssistantServiceImpl implements TpoAssistantService{
 
 	
 	}
-
+	
+	/**
+	 * Function declaration for getStudentEligibileForCompany
+	 * which returns a list of students eligible for a company based on the criteria
+	 * sent as a parameter
+	 */
 	@Override
 	public List<Student> getStudentEligibileForCompany(List<CompanyCriteria> companyCriteriaList) {
 		// TODO Auto-generated method stub

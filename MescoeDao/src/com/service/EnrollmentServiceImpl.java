@@ -12,16 +12,26 @@ import com.model.Student;
 
 public class EnrollmentServiceImpl implements EnrollmentService{
 	EnrollmentDao enrollmentDao=new EnrollmentDaoImpl();
+	
+	/**
+	 * Function definition that returns a list of companies that a student has enrolled in
+	 * based on the student's unique identification named as sid in the table Student of the
+	 * database called mescoe.
+	 */
 	@Override
 	public List<Company> companiesEnrolledByStudentService(int sid) {
 		return enrollmentDao.companiesEnrolledByStudent(sid);
 
 	}
+	
+	/**
+	 * Function definition that returns whether the student is eligible to enroll
+	 * for a specific company in the table Enrollment of the database mescoe.
+	 * of the database mescoe.
+	 */
 	@Override
 	public boolean addEnrollmentService(Student student,Company company) {
-		//		Student student=enroll.getStudent();
-		//		Company company=enroll.getCompany();
-
+		
 		try {
 
 			if(student.getSsc()<company.getSsc())
@@ -74,6 +84,11 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 		return true;
 	}
 
+	/**
+	 * Function definition that returns a list of students that have enrolled in a company
+	 * based on the company's unique identification named as cid in the table Company of the
+	 * database called mescoe.
+	 */
 	@Override
 	public List<Student> studentsEnrolledInACompanyService(int cid) 
 	{
