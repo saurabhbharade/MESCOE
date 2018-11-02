@@ -45,7 +45,7 @@
 	Enter Company id       : <input type="text" name="cid"   /><br><br>
 	<input type="submit" name="View Criteria" value ="View Criteria" > <br><br><br></form>
 	
-	<form  action="">  
+	<form  action="GetStudentFromOtherCollege">  
 	Enter Company id       : <input type="text" name="cid"   /><br><br>
 	<input type="submit" name="Get Student List from other college" value ="Get Student List from other college" > <br><br><br></form>
 	
