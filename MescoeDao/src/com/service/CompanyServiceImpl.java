@@ -30,6 +30,7 @@ public class CompanyServiceImpl implements CompanyService{
 		List<Company> allCompanyList = getAllCompanyService();
 		for(Company company:allCompanyList)
 		{
+			
 			int yearOfCampus = company.getDate_of_campus().getYear();
 			yearOfCampus=yearOfCampus+1900; // by default 1900 will be subtracted
 			if(yearOfCampus==year)
@@ -38,7 +39,6 @@ public class CompanyServiceImpl implements CompanyService{
 			}
 		}
 		return companyByYearList;
-		
 	
 	}
 	@Override

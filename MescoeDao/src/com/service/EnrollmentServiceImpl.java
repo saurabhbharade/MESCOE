@@ -62,7 +62,8 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 			List<Enrollment> allEnrollmentList = new EnrollmentDaoImpl().getAllEnrollments();
 			int size = allEnrollmentList.size()-1;
 			int lasteid = allEnrollmentList.get(size).getEid();
-			Enrollment enroll=new Enrollment(lasteid++, student, company);
+			lasteid=lasteid+1;
+			Enrollment enroll=new Enrollment(lasteid, student, company);
 			new EnrollmentDaoImpl().addEnrollment(enroll);
 			return true;
 
@@ -73,7 +74,6 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 		}
 		return true;
 	}
-
 	@Override
 	public List<Student> studentsEnrolledInACompanyService(int cid) 
 	{

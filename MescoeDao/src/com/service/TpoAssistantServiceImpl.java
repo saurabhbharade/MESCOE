@@ -26,17 +26,6 @@ public class TpoAssistantServiceImpl implements TpoAssistantService{
 			return false;
 		int flag=0;
 		List<CompanyCriteria> companyCriteriaList = new CompanyCriteriaServiceImpl().getCompanyCriteriaService(company.getCid());
-		for(CompanyCriteria companyCriteria:companyCriteriaList)
-		{
-			flag=0;
-			if(companyCriteria.getYop()==student.getYop())
-			{
-				flag=1;
-				break;
-			}
-		}
-		if(flag==0)
-			return false;
 		
 		for(CompanyCriteria companyCriteria:companyCriteriaList)
 		{

@@ -39,10 +39,10 @@ public class CompanyCriteriaServiceImpl implements CompanyCriteriaService{
 	/**
 	 * Function definition of getAllCompanyCriteria
 	 */
-	@Override
-	public List<CompanyCriteria> getAllCompanyCriteria() {
-		// TODO Auto-generated method stub
-		return null;
+//	@Override
+//	public List<CompanyCriteria> getAllCompanyCriteria() {
+//		// TODO Auto-generated method stub
+//		return null;
 	}
 
-}
+
