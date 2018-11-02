@@ -44,6 +44,7 @@ public class CompaniesVisitedInAYear extends HttpServlet {
 		CompanyService companyService = new CompanyServiceImpl();
 		List<Company> companyByYear = companyService.getCompanyByYear(year_in_int);
 		session.setAttribute("CompanyCriteriaList", companyByYear);
+		response.getWriter().append(""+companyByYear.size());
 		
 		RequestDispatcher requestDispatcher=request.getRequestDispatcher("ViewCompanyCriteriaDisplay.jsp");
 		 requestDispatcher.forward(request, response);

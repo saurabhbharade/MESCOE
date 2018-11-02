@@ -73,31 +73,10 @@ public class GetStudentFromOtherCollege extends HttpServlet {
 		PvgWebService pvgWebServicePort = pvgwebservice.getPvgWebServicePort();
 		List<Student> listOfStudentFromPvg = pvgWebServicePort.getListOfStudentFromPvg(cid, cname, salary, designation, location, ssc, hsc, beaggregate, backlog, numrequired, poolcampus, critid, yop, branch);
 		int sizeOfStudentFromPvg = listOfStudentFromPvg.size();
-		
+
+		response.getWriter().append("list size before adding : "+listOfStudentFromPvg.size());
+
 		List<com.model.Student> unplacedStudentList = new StudentServiceImpl().getUnplacedStudent();
-//		for(int i=0;i<sizeOfStudentFromMescoe;i++)
-//		{
-//			int sid=listOfStudentFromMescoe.get(i).getSid();
-//			int backlogOfStudent=listOfStudentFromMescoe.get(i).getBacklog();
-//			int statusOfStudent=listOfStudentFromMescoe.get(i).getStatus();
-//			String passwordOfStudent=listOfStudentFromMescoe.get(i).getPassword();
-//			String sname=listOfStudentFromMescoe.get(i).getSname();
-//			String branchOfStudent=listOfStudentFromMescoe.get(i).getBranch();
-//			String instituteNameOfStudent=listOfStudentFromMescoe.get(i).getInstituteName();
-//			String email=listOfStudentFromMescoe.get(i).getEmail();
-//			long phone=listOfStudentFromMescoe.get(i).getPhone();
-//			int yopOfStudent=listOfStudentFromMescoe.get(i).getYop();
-//			float sscMarksOfStudent=listOfStudentFromMescoe.get(i).getSsc();
-//			float hscMarksOfStudent=listOfStudentFromMescoe.get(i).getHsc();
-//			float beaggregateOfStudent=listOfStudentFromMescoe.get(i).getBeaggregate();
-//			com.model.Student studentOfOtherCollege=new com.model.Student(sid, backlogOfStudent, statusOfStudent, passwordOfStudent, sname, branchOfStudent, instituteNameOfStudent, email, phone, yopOfStudent, sscMarksOfStudent, hscMarksOfStudent, beaggregateOfStudent);
-//			unplacedStudentList.add(studentOfOtherCollege);
-//			response.getWriter().append("list size after adding : "+unplacedStudentList.size());
-//			session.setAttribute("ListofStudents", unplacedStudentList);
-//			RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentList1.jsp");
-//			requestDispatcher.forward(request, response);
-//
-//		}
 		
 		for(int i=0;i<sizeOfStudentFromPvg;i++)
 		{
