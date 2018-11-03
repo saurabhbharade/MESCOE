@@ -43,6 +43,8 @@ public class GetStudentFromOtherCollege extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session=request.getSession(true);
+		try
+		{
 		String tempcid=request.getParameter("cid");
 		int cidforCompany=Integer.parseInt(tempcid);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -101,6 +103,11 @@ public class GetStudentFromOtherCollege extends HttpServlet {
 		session.setAttribute("ListofStudents", unplacedStudentList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("StudentList1.jsp");
 		requestDispatcher.forward(request, response);
+		}
+		catch(NullPointerException e)
+		{
+			e.printStackTrace();
+		}
 
 
 	}

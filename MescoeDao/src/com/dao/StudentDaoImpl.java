@@ -14,8 +14,13 @@ public class StudentDaoImpl implements StudentDao
 {
 	private static List<Student> allStudentList=new ArrayList<Student>();
 	
+	/**
+	 * Function definition of getStudent to get details of a student based on the unique 
+	 * Identifier Student Id, sid passed as a parameter.
+	 */
 	@Override
-	public Student getStudent(int sid) {
+	public Student getStudent(int sid) 
+	{
 		try{
 		//	Student dummy=new Student(sid,"","");
 			  Student dummy=new Student();
@@ -73,6 +78,11 @@ public class StudentDaoImpl implements StudentDao
 		
 	}
 
+	
+	/**
+	 * Function definition of getStudent to get details of a student based on the unique 
+	 * Identifier Student Id, sid passed as a parameter.
+	 */
 	@Override
 	public List<Student> getAllStudents() {
 		// TODO Auto-generated method stub
@@ -121,6 +131,10 @@ public class StudentDaoImpl implements StudentDao
 	
 	
 
+	/**
+	 *  Function definition of addStudent to add details of a student in the table Student of
+	 * the database mescoe.
+	 */
 	@Override
 	public void addStudent(Student s) throws StudentExistsException 
 	{
@@ -130,23 +144,6 @@ public class StudentDaoImpl implements StudentDao
 			String sqlquery="insert into "+TABLEStudent+" values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement pst=connection.prepareStatement(sqlquery);
 			
-//			pst.setInt(1, s.getSid());
-//			pst.setInt(2, s.getBacklog());
-//			pst.setInt(3, s.getStatus());
-//			pst.setString(4, s.getPassword());
-//			pst.setString(5, s.getSname());
-//			pst.setString(6, s.getBranch());
-//			pst.setString(7,s.getInstituteName());
-//			pst.setString(8, s.getEmail());
-//			pst.setLong(9, s.getPhone());
-//			pst.setInt(10, s.getYop());
-////			pst.setDouble(11, s.getSsc());
-////			pst.setDouble(12, s.getHsc());
-////			pst.setDouble(13, s.getBeaggregate());
-//
-//			pst.setFloat(11, s.getSsc());
-//			pst.setFloat(12, s.getHsc());
-//			pst.setFloat(13, s.getBeaggregate());
 
 			pst.setInt(1, s.getSid());
 			pst.setString(2, s.getPassword());
@@ -182,6 +179,10 @@ public class StudentDaoImpl implements StudentDao
 		
 	}
 
+	/**
+	 * Function definition for updateStudent to update details of a student in the table Student of
+	 * the database mescoe.
+	 */
 	@Override
 	public void updateStudent(Student s) 
 	{
@@ -228,6 +229,10 @@ public class StudentDaoImpl implements StudentDao
 			
 	}
 
+	/**
+	 * Function definition of deleteStudent to delete details of a student in the table Student of
+	 * the database mescoe.
+	 */
 	@Override
 	public void deleteStudent(Student s) 
 	{

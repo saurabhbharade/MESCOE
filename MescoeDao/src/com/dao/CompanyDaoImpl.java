@@ -15,6 +15,12 @@ public class CompanyDaoImpl implements CompanyDao
 {
 	private static List<Company> allCompaniesList = new ArrayList<Company>();
 
+	
+
+	/**
+	 * Function definition of getCompany that returns the details of a company based on the
+	 * Company Id,cid passed as a parameter.
+	 */
 	@Override
 	public Company getCompany(int cid) 
 	{
@@ -60,6 +66,10 @@ public class CompanyDaoImpl implements CompanyDao
 		return null;
 	}
 
+	/**
+	 * Function definition of getAllCompanies that returns the list of all the companies 
+	 * in the table Company from the database mescoe.
+	 */
 	@Override
 	public List<Company> getAllCompanies() {
 		
@@ -102,6 +112,10 @@ public class CompanyDaoImpl implements CompanyDao
 	}
 	
 
+	/**
+	 * Function definition of addCompany that adds the details of a company in the 
+	 * table Company from the database mescoe according to the parameters passed.
+	 */
 	@Override
 	public void addCompany(Company c) throws CompanyExistsException {
 		
@@ -137,6 +151,11 @@ public class CompanyDaoImpl implements CompanyDao
 		
 	}
 
+	/**
+	 * Function definition of updateCompany that updates the details of a company in the 
+	 * table Company from the database mescoe.
+	 */
+	
 	@Override
 	public void updateCompany(Company c) throws CompanyExistsException {
 		
@@ -186,6 +205,10 @@ public class CompanyDaoImpl implements CompanyDao
 		
 	}
 
+	/**
+	 * Function definition of deleteCompany that deletes the details of a company in the 
+	 * table Company from the database mescoe.
+	 */
 	@Override
 	public void deleteCompany(Company c) throws CompanyExistsException {
 		int cid = c.getCid();
